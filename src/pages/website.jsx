@@ -14,40 +14,40 @@ export default function Website() {
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // ✅ Submit email using hidden form (bypasses CORS)
   const handleSubscribe = async () => {
-    if (!email.trim() || !email.includes("@")) {
-      setStatus("⚠️ Please enter a valid email.");
-      return;
-    }
+  if (!email.trim() || !email.includes("@")) {
+    setStatus("⚠️ Please enter a valid email.");
+    return;
+  }
 
-    setLoading(true);
-    setStatus(null);
+  setLoading(true);
+  setStatus(null);
 
-    try {
-      const response = await fetch("/api/subscribe", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ email }),
-});
-
-
-      const result = await response.json();
-
-      if (result.status === "success") {
-        setStatus("Thanks for joining. You'll be the first to know when tickets go live!");
-        setEmail("");
-      } else if (result.status === "duplicate") {
-        setStatus("This email has already been added..");
-      } else {
-        setStatus(`${result.message || "Something went wrong."}`);
+  try {
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbxdaqbMUYRB67n49oa9GQ9abDM36RrYXnQf-0RNkQvd5PdFXhw2Sev_nDmJ45XjlLXawA/exec",
+      {
+        method: "POST",
+        mode: "no-cors", 
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
       }
-    } catch (err) {
-      console.error(err);
-      setStatus("Could not connect to server.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    );
+
+
+    setStatus("Thanks for joining! You'll be the first to know when tickets go live!");
+    setEmail("");
+  } catch (err) {
+    console.error(err);
+    setStatus("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
+  
 
   return (
     <div
@@ -67,18 +67,18 @@ export default function Website() {
       <div className="hero-bg min-h-screen w-full flex flex-col">
         {/* Header Section */}
         <header
-  className="
-    absolute top-6 left-1/2 -translate-x-1/2
-    sm:top-6 sm:left-6 sm:translate-x-0
-    flex items-center z-50
-  "
->
-  <img
-    src={EthMumbaiFullLogo}
-    alt="ETHMumbai Logo"
-    className="h-10 sm:h-12 md:h-14 lg:h-16 object-contain"
-  />
-</header>
+          className="
+            absolute top-6 left-1/2 -translate-x-1/2
+            sm:top-6 sm:left-6 sm:translate-x-0
+            flex items-center z-50
+          "
+        >
+          <img
+            src={EthMumbaiFullLogo}
+            alt="ETHMumbai Logo"
+            className="h-10 sm:h-12 md:h-14 lg:h-16 object-contain"
+          />
+        </header>
 
         {/* Top-right Social Menu (Desktop only) */}
         <div className="absolute top-6 right-6 z-50 hidden md:flex gap-4">
@@ -134,27 +134,25 @@ export default function Website() {
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <a href="https://tally.so/r/nGW5Bz">
               <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
-              Apply to Speak
+                Apply to Speak
               </button>
             </a>
             <a href=" https://tally.so/r/3NkdGb">
-            <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
-              Apply to Sponsor
-            </button>
+              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
+                Apply to Sponsor
+              </button>
             </a>
           </div>
 
           {/* Newsletter Signup */}
-          {/* Newsletter Signup */}
           <div
             className="
-    w-full max-w-lg px-4
-    mt-12 md:mt-0
-    md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2
-  "
+              w-full max-w-lg px-4
+              mt-12 md:mt-0
+              md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2
+            "
           >
             <div className="inter-font flex flex-col gap-2 w-full">
-
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
                 <input
                   id="email"
@@ -164,37 +162,35 @@ export default function Website() {
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
                   className="
-          flex-grow h-12 px-4 rounded-lg
-          text-black focus:outline-none
-          w-full bg-white
-          disabled:opacity-70
-        "
+                    flex-grow h-12 px-4 rounded-lg
+                    text-black focus:outline-none
+                    w-full bg-white
+                    disabled:opacity-70
+                  "
                 />
                 <button
                   onClick={handleSubscribe}
                   disabled={loading}
                   className="
-                  flex items-center justify-center
-                  h-12 px-2
-                  w-full sm:w-[160px]
-                  border border-white
-                  rounded-full   
-                  text-white font-medium
-                  bg-[#E91F25]
-                  hover:bg-white hover:text-red-600
-                  transition
-                  disabled:opacity-70
-                  whitespace-nowrap   /* ensures text stays in one line */
-                ">
+                    flex items-center justify-center
+                    h-12 px-2
+                    w-full sm:w-[160px]
+                    border border-white
+                    rounded-full   
+                    text-white font-medium
+                    bg-[#E91F25]
+                    hover:bg-white hover:text-red-600
+                    transition
+                    disabled:opacity-70
+                    whitespace-nowrap
+                  "
+                >
                   {loading ? "..." : "Join the Waitlist"}
                 </button>
-
               </div>
               {status && <p className="mt-2 text-sm text-white">{status}</p>}
             </div>
           </div>
-
-
 
           {/* Social Icons on Small Screens */}
           <div className="mt-14 flex md:hidden gap-4 justify-center">
