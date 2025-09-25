@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import DesktopBG from "../assets/desktop-bg.png";
-import PhoneBG from "../assets/phone-bg.png";
+import DesktopBG from "../assets/desktop-bg.webp";
+import PhoneBG from "../assets/phone-bg.webp";
 import EthMumbaiLogo from "../assets/ethmumbai-logo-scaled.png";
 import EthMumbaiFullLogo from "../assets/ethmumbai-full.png";
 import TwitterLogo from "../assets/x-logo.png";
@@ -47,7 +47,7 @@ export default function Website() {
     setLoading(false);
   }
 };
-  
+
 
   return (
     <div
