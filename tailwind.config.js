@@ -12,6 +12,7 @@ export default {
       },
       fontFamily: {
         mplus: ["MPLUSRounded1c", "sans-serif"],
+        interTight: ['"Inter Tight"', 'sans-serif'],
       },
     },
   },

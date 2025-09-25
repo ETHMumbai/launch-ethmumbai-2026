@@ -24,7 +24,22 @@ letter-spacing: -0.04em;
 
 }
 
+.wordmark{
+  font-family: 'MPLUSRounded1c' !important;
+  font-style: normal;
+font-weight: 800;
+}
 
+.cta-button {
+  font-family: 'MPLUSRounded1c' !important;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.inter-font {
+  font-family: 'Inter Tight', sans-serif !important;
+  font-style: normal;
+}
 .hero-bg {
   background-repeat: no-repeat;
   background-size: 100% 100%;  /* stretches image */
