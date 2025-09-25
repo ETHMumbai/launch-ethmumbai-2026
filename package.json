@@ -13,8 +13,13 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/vite": "^4.1.12",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
     "font-face": "^2.3.4",
     "lucide-react": "^0.541.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.18.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.8.1"

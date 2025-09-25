@@ -9,6 +9,43 @@ import TelegramLogo from "../assets/telegram-logo.png";
 
 export default function Website() {
   const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!email.trim() || !email.includes("@")) {
+      setStatus("⚠️ Please enter a valid email.");
+      return;
+    }
+
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch("http://localhost:5000/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
+      if (result.status === "success") {
+        setStatus("Thanks for joining. You'll be the first to know when tickets go live!");
+        setEmail("");
+      } else if (result.status === "duplicate") {
+        setStatus("This email has already been added..");
+      } else {
+        setStatus(`${result.message || "Something went wrong."}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("Could not connect to server.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
@@ -29,10 +66,10 @@ export default function Website() {
         {/* Header Section */}
         <header
           className="
-    absolute top-3 left-1/2 -translate-x-1/2
-    sm:top-6 sm:left-6 sm:translate-x-0
-    flex items-center z-50
-  "
+            absolute top-3 left-1/2 -translate-x-1/2
+            sm:top-6 sm:left-6 sm:translate-x-0
+            flex items-center z-50
+          "
         >
           <div className="bg-white rounded-full shadow-md px-3 py-2 sm:px-4 sm:py-2 flex items-center gap-2">
             <img
@@ -45,7 +82,6 @@ export default function Website() {
             </span>
           </div>
         </header>
-
 
         {/* Top-right Social Menu (Desktop only) */}
         <div className="absolute top-6 right-6 z-50 hidden md:flex gap-4">
@@ -93,10 +129,9 @@ export default function Website() {
             <img
               src={EthMumbaiLogo}
               alt="ETHMumbai Logo Mobile"
-              className=" mx-auto object-contain"
+              className="mx-auto object-contain"
             />
           </div>
-
 
           {/* CTA Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
@@ -109,42 +144,63 @@ export default function Website() {
           </div>
 
           {/* Newsletter Signup */}
-          <div
-            className="
+          {/* Newsletter Signup */}
+<div
+  className="
     w-full max-w-lg px-4
-    mt-12 md:mt-0          /* margin only on small screens */
+    mt-12 md:mt-0
     md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2
   "
-          >
-            <div className="inter-font flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
-              <input
-                type="email"
-                placeholder="Your BEST email address..."
-                className="
-        flex-grow h-12 px-4 rounded-lg
-        text-black focus:outline-none
-        w-full bg-white
-      "
-              />
-              <button
-                className="
-        flex items-center justify-center
-        h-12
-        w-full sm:w-[105px]   /* full width only on mobile */
-        border border-white rounded-lg
-        text-white font-medium
-        bg-[#E91F25]
-        hover:bg-white hover:text-red-600
-        transition
-      "
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
+>
+  <div className="inter-font flex flex-col gap-2 w-full">
+    {/* Label above input */}
+    <label
+      htmlFor="email"
+      className="block flex text-white text-sm sm:text-base font-small"
+    >
+      Be the first one to know when tickets go live
+    </label>
+
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+      <input
+        id="email"
+        type="email"
+        placeholder="Your BEST email address..."
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        disabled={loading}
+        className="
+          flex-grow h-12 px-4 rounded-lg
+          text-black focus:outline-none
+          w-full bg-white
+          disabled:opacity-70
+        "
+      />
+      <button
+        onClick={handleSubscribe}
+        disabled={loading}
+        className="
+          flex items-center justify-center
+          h-12
+          w-full sm:w-[105px]
+          border border-white rounded-lg
+          text-white font-medium
+          bg-[#E91F25]
+          hover:bg-white hover:text-red-600
+          transition
+          disabled:opacity-70
+        "
+      >
+        {loading ? "..." : "Submit"}
+      </button>
+    </div>
+    {status && <p className="mt-2 text-sm text-white">{status}</p>}
+  </div>
+</div>
 
 
-          {/* Social Icons on Small Screens (Below Newsletter) */}
+
+          {/* Social Icons on Small Screens */}
           <div className="mt-14 flex md:hidden gap-4 justify-center">
             <a
               href="https://x.com/ethmumbai"
