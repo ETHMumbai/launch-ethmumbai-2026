@@ -1,0 +1,34 @@
+@import "./fonts.css";
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.best-h1 {
+  font-family: 'MPLUSRounded1c' !important;
+
+  font-style: normal;
+font-weight: 800;
+/* font-size: 78px;
+line-height: 95%; */
+/* identical to box height, or 74px */
+text-align: center;
+letter-spacing: -0.04em;
+
+}
+
+
+.hero-bg {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;  /* stretches image */
+  background-position: bottom center;
+  min-height: 100vh;
+  width: 100%;
+}
