@@ -34,19 +34,19 @@ export default function Website() {
         {/* Desktop view */}
         <div className="hidden md:flex gap-4">
           <a
-            href="#"
+            href="https://x.com/ethmumbai"
             className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
           >
             <img src={TwitterLogo} alt="Twitter" className="w-5 h-5" />
           </a>
           <a
-            href="#"
+            href="hhttps://farcaster.xyz/ethmumbai"
             className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
           >
             <img src={FarcasterLogo} alt="Farcaster" className="w-5 h-5" />
           </a>
           <a
-            href="#"
+            href="https://t.me/ethmumbai"
             className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
           >
             <img src={TelegramLogo} alt="Telegram" className="w-5 h-5" />
