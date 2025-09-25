@@ -132,12 +132,12 @@ export default function Website() {
 
           {/* CTA Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
-            <a href="https://tally.so/r/nGW5Bz">
+            <a href="https://tally.so/r/nGW5Bz" target="_blank" rel="noopener noreferrer">
               <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
                 Apply to Speak
               </button>
             </a>
-            <a href=" https://tally.so/r/3NkdGb">
+            <a href=" https://tally.so/r/3NkdGb" target="_blank" rel="noopener noreferrer">
               <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
                 Apply to Sponsor
               </button>
@@ -166,6 +166,7 @@ export default function Website() {
                     text-black focus:outline-none
                     w-full bg-white
                     disabled:opacity-70
+                    text-center placeholder:text-center
                   "
                 />
                 <button
@@ -195,19 +196,19 @@ export default function Website() {
           {/* Social Icons on Small Screens */}
           <div className="mt-14 flex md:hidden gap-4 justify-center">
             <a
-              href="https://x.com/ethmumbai"
+              href="https://x.com/ethmumbai" target="_blank" rel="noopener noreferrer"
               className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
             >
               <img src={TwitterLogo} alt="Twitter" className="w-5 h-5" />
             </a>
             <a
-              href="https://farcaster.xyz/ethmumbai"
+              href="https://farcaster.xyz/ethmumbai" target="_blank" rel="noopener noreferrer"
               className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
             >
               <img src={FarcasterLogo} alt="Farcaster" className="w-5 h-5" />
             </a>
             <a
-              href="https://t.me/ethmumbai"
+              href="https://t.me/ethmumbai" target="_blank" rel="noopener noreferrer"
               className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
             >
               <img src={TelegramLogo} alt="Telegram" className="w-5 h-5" />
