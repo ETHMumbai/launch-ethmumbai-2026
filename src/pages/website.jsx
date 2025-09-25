@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import DesktopBG from "../assets/desktop-bg.png";
 import PhoneBG from "../assets/phone-bg.png";
 import EthMumbaiLogo from "../assets/ethmumbai-logo-scaled.png";
+import EthMumbaiFullLogo from "../assets/ethmumbai-full.png";
 import TwitterLogo from "../assets/x-logo.png";
 import FarcasterLogo from "../assets/farcaster-logo.png";
 import TelegramLogo from "../assets/telegram-logo.png";
@@ -23,11 +24,12 @@ export default function Website() {
     setStatus(null);
 
     try {
-      const response = await fetch("http://localhost:5000/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const response = await fetch("/api/subscribe", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ email }),
+});
+
 
       const result = await response.json();
 
@@ -65,23 +67,18 @@ export default function Website() {
       <div className="hero-bg min-h-screen w-full flex flex-col">
         {/* Header Section */}
         <header
-          className="
-            absolute top-3 left-1/2 -translate-x-1/2
-            sm:top-6 sm:left-6 sm:translate-x-0
-            flex items-center z-50
-          "
-        >
-          <div className="bg-white rounded-full shadow-md px-3 py-2 sm:px-4 sm:py-2 flex items-center gap-2">
-            <img
-              src={EthMumbaiLogo}
-              alt="ETHMumbai Logo"
-              className="h-6 w-6 sm:h-8 sm:w-8 object-contain"
-            />
-            <span className="wordmark text-red-600 font-extrabold text-base sm:text-lg whitespace-nowrap">
-              ETHMUMBAI
-            </span>
-          </div>
-        </header>
+  className="
+    absolute top-6 left-1/2 -translate-x-1/2
+    sm:top-6 sm:left-6 sm:translate-x-0
+    flex items-center z-50
+  "
+>
+  <img
+    src={EthMumbaiFullLogo}
+    alt="ETHMumbai Logo"
+    className="h-10 sm:h-12 md:h-14 lg:h-16 object-contain"
+  />
+</header>
 
         {/* Top-right Social Menu (Desktop only) */}
         <div className="absolute top-6 right-6 z-50 hidden md:flex gap-4">
@@ -106,7 +103,7 @@ export default function Website() {
         </div>
 
         {/* Main Content */}
-        <main className="flex flex-col items-center justify-start text-center text-white px-4 pt-24 pb-16 flex-grow">
+        <main className="flex flex-col items-center justify-start text-center text-white px-4 pt-24 pb-60 flex-grow">
           {/* Hero Heading */}
           <h1
             className="
