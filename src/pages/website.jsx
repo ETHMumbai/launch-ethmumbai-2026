@@ -135,68 +135,67 @@ export default function Website() {
 
           {/* CTA Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
-            <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
+            <a href="https://tally.so/r/nGW5Bz">
+              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
               Apply to Speak
-            </button>
+              </button>
+            </a>
+            <a href=" https://tally.so/r/3NkdGb">
             <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
               Apply to Sponsor
             </button>
+            </a>
           </div>
 
           {/* Newsletter Signup */}
           {/* Newsletter Signup */}
-<div
-  className="
+          <div
+            className="
     w-full max-w-lg px-4
     mt-12 md:mt-0
     md:absolute md:bottom-4 md:left-1/2 md:-translate-x-1/2
   "
->
-  <div className="inter-font flex flex-col gap-2 w-full">
-    {/* Label above input */}
-    <label
-      htmlFor="email"
-      className="block flex text-white text-sm sm:text-base font-small"
-    >
-      Be the first one to know when tickets go live
-    </label>
+          >
+            <div className="inter-font flex flex-col gap-2 w-full">
 
-    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
-      <input
-        id="email"
-        type="email"
-        placeholder="Your BEST email address..."
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        disabled={loading}
-        className="
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Your BEST email address..."
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={loading}
+                  className="
           flex-grow h-12 px-4 rounded-lg
           text-black focus:outline-none
           w-full bg-white
           disabled:opacity-70
         "
-      />
-      <button
-        onClick={handleSubscribe}
-        disabled={loading}
-        className="
-          flex items-center justify-center
-          h-12
-          w-full sm:w-[105px]
-          border border-white rounded-lg
-          text-white font-medium
-          bg-[#E91F25]
-          hover:bg-white hover:text-red-600
-          transition
-          disabled:opacity-70
-        "
-      >
-        {loading ? "..." : "Submit"}
-      </button>
-    </div>
-    {status && <p className="mt-2 text-sm text-white">{status}</p>}
-  </div>
-</div>
+                />
+                <button
+                  onClick={handleSubscribe}
+                  disabled={loading}
+                  className="
+                  flex items-center justify-center
+                  h-12 px-2
+                  w-full sm:w-[160px]
+                  border border-white
+                  rounded-full   
+                  text-white font-medium
+                  bg-[#E91F25]
+                  hover:bg-white hover:text-red-600
+                  transition
+                  disabled:opacity-70
+                  whitespace-nowrap   /* ensures text stays in one line */
+                ">
+                  {loading ? "..." : "Join the Waitlist"}
+                </button>
+
+              </div>
+              {status && <p className="mt-2 text-sm text-white">{status}</p>}
+            </div>
+          </div>
 
 
 
