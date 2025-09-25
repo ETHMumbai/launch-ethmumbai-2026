@@ -83,19 +83,19 @@ export default function Website() {
         {/* Top-right Social Menu (Desktop only) */}
         <div className="absolute top-6 right-6 z-50 hidden md:flex gap-4">
           <a
-            href="https://x.com/ethmumbai"
+            href="https://x.com/ethmumbai" target="_blank" rel="noopener noreferrer"
             className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
           >
             <img src={TwitterLogo} alt="Twitter" className="w-5 h-5" />
           </a>
           <a
-            href="https://farcaster.xyz/ethmumbai"
+            href="https://farcaster.xyz/ethmumbai" target="_blank" rel="noopener noreferrer"
             className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
           >
             <img src={FarcasterLogo} alt="Farcaster" className="w-5 h-5" />
           </a>
           <a
-            href="https://t.me/ethmumbai"
+            href="https://t.me/ethmumbai" target="_blank" rel="noopener noreferrer"
             className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
           >
             <img src={TelegramLogo} alt="Telegram" className="w-5 h-5" />
