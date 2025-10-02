@@ -14,10 +14,10 @@ export default function Website() {
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Submit email using hidden form (bypasses CORS)
+  //  Submit email using hidden form (bypasses CORS)
   const handleSubscribe = async () => {
   if (!email.trim() || !email.includes("@")) {
-    setStatus("⚠️ Please enter a valid email.");
+    setStatus("Please enter a valid email.");
     return;
   }
 
@@ -26,10 +26,9 @@ export default function Website() {
 
   try {
     const response = await fetch(
-      "https://script.google.com/macros/s/AKfycbxdaqbMUYRB67n49oa9GQ9abDM36RrYXnQf-0RNkQvd5PdFXhw2Sev_nDmJ45XjlLXawA/exec",
+      "https://ethmumbai-backend.vercel.app/api/subscribe",
       {
         method: "POST",
-        mode: "no-cors", 
         headers: {
           "Content-Type": "application/json",
         },
@@ -37,9 +36,14 @@ export default function Website() {
       }
     );
 
-
-    setStatus("Thanks for joining! You'll be the first to know when tickets go live!");
-    setEmail("");
+    if (response.ok) {
+      const data = await response.json(); // optional if your backend returns JSON
+      setStatus("Thanks for joining! You'll be the first to know when tickets go live!");
+      setEmail("");
+    } else {
+      const errorData = await response.json().catch(() => null);
+      setStatus(errorData?.message || "Something went wrong.");
+    }
   } catch (err) {
     console.error(err);
     setStatus("Something went wrong.");
@@ -47,6 +51,7 @@ export default function Website() {
     setLoading(false);
   }
 };
+
 
 
   return (
