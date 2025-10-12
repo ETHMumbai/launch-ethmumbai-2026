@@ -138,12 +138,12 @@ export default function Website() {
           {/* CTA Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <a href="https://tally.so/r/nGW5Bz" target="_blank" rel="noopener noreferrer">
-              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
+              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md transition border-1 hover:bg-red-600 hover:text-white hover:cursor-pointer hover:shadow-lg">
                 Apply to Speak
               </button>
             </a>
             <a href=" https://tally.so/r/3NkdGb" target="_blank" rel="noopener noreferrer">
-              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md hover:bg-gray-100 transition">
+              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md transition border-1 duration-300 hover:bg-red-600 hover:text-white hover:cursor-pointer hover:shadow-lg">
                 Apply to Sponsor
               </button>
             </a>
