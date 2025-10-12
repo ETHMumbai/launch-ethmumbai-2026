@@ -5,8 +5,11 @@ import PhoneBG from "../assets/phone-bg.webp";
 import EthMumbaiLogo from "../assets/ethmumbai-logo-scaled.png";
 import EthMumbaiFullLogo from "../assets/ethmumbai-full.png";
 import TwitterLogo from "../assets/x-logo.png";
+import TwitterWhite from "../assets/x-white.png";
 import FarcasterLogo from "../assets/farcaster-logo.png";
+import FarcasterWhite from "../assets/farcaster-white.png";
 import TelegramLogo from "../assets/telegram-logo.png";
+import TelegramWhite from "../assets/telegram-white.png";
 
 export default function Website() {
   const [open, setOpen] = useState(false);
@@ -16,41 +19,41 @@ export default function Website() {
 
   //  Submit email using hidden form (bypasses CORS)
   const handleSubscribe = async () => {
-  if (!email.trim() || !email.includes("@")) {
-    setStatus("Please enter a valid email.");
-    return;
-  }
-
-  setLoading(true);
-  setStatus(null);
-
-  try {
-    const response = await fetch(
-      "https://ethmumbai-backend.vercel.app/api/subscribe",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      }
-    );
-
-    if (response.ok) {
-      const data = await response.json(); // optional if your backend returns JSON
-      setStatus("Thanks for joining! You'll be the first to know when tickets go live!");
-      setEmail("");
-    } else {
-      const errorData = await response.json().catch(() => null);
-      setStatus(errorData?.message || "Something went wrong.");
+    if (!email.trim() || !email.includes("@")) {
+      setStatus("Please enter a valid email.");
+      return;
     }
-  } catch (err) {
-    console.error(err);
-    setStatus("Something went wrong.");
-  } finally {
-    setLoading(false);
-  }
-};
+
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch(
+        "https://ethmumbai-backend.vercel.app/api/subscribe",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json(); // optional if your backend returns JSON
+        setStatus("Thanks for joining! You'll be the first to know when tickets go live!");
+        setEmail("");
+      } else {
+        const errorData = await response.json().catch(() => null);
+        setStatus(errorData?.message || "Something went wrong.");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
 
@@ -88,22 +91,67 @@ export default function Website() {
         {/* Top-right Social Menu (Desktop only) */}
         <div className="absolute top-6 right-6 z-50 hidden md:flex gap-4">
           <a
-            href="https://x.com/ethmumbai" target="_blank" rel="noopener noreferrer"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
+            href="https://x.com/ethmumbai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md 
+             border-2 border-transparent transition-colors duration-300 ease-in-out
+             hover:bg-red-600 hover:border-white hover:cursor-pointer"
           >
-            <img src={TwitterLogo} alt="Twitter" className="w-5 h-5" />
+            {/* Default icon */}
+            <img
+              src={TwitterLogo}
+              alt="X Logo"
+              className="w-5 h-5 block group-hover:hidden"
+            />
+            {/* White icon on hover */}
+            <img
+              src={TwitterWhite}
+              alt="X Logo White"
+              className="w-5 h-5 hidden group-hover:block"
+            />
           </a>
           <a
-            href="https://farcaster.xyz/ethmumbai" target="_blank" rel="noopener noreferrer"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
+            href="https://farcaster.xyz/ethmumbai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md 
+             border-2 border-transparent transition-colors duration-300 ease-in-out
+             hover:bg-red-600 hover:border-white hover:cursor-pointer"
           >
-            <img src={FarcasterLogo} alt="Farcaster" className="w-5 h-5" />
+            {/* Default icon */}
+            <img
+              src={FarcasterLogo}
+              alt="X Logo"
+              className="w-5 h-5 block group-hover:hidden"
+            />
+            {/* White icon on hover */}
+            <img
+              src={FarcasterWhite}
+              alt="X Logo White"
+              className="w-5 h-5 hidden group-hover:block"
+            />
           </a>
           <a
-            href="https://t.me/ethmumbai" target="_blank" rel="noopener noreferrer"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
+            href="https://t.me/ethmumbai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md 
+             border-2 border-transparent transition-colors duration-300 ease-in-out
+             hover:bg-red-600 hover:border-white hover:cursor-pointer"
           >
-            <img src={TelegramLogo} alt="Telegram" className="w-5 h-5" />
+            {/* Default icon */}
+            <img
+              src={TelegramLogo}
+              alt="X Logo"
+              className="w-5 h-5 block group-hover:hidden"
+            />
+            {/* White icon on hover */}
+            <img
+              src={TelegramWhite}
+              alt="X Logo White"
+              className="w-5 h-5 hidden group-hover:block"
+            />
           </a>
         </div>
 
@@ -138,12 +186,12 @@ export default function Website() {
           {/* CTA Buttons */}
           <div className="mt-6 flex flex-col sm:flex-row gap-4">
             <a href="https://tally.so/r/nGW5Bz" target="_blank" rel="noopener noreferrer">
-              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md transition border-1 hover:bg-red-600 hover:text-white hover:cursor-pointer hover:shadow-lg">
+              <button className="inter-font bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md transition border-1 hover:bg-red-600 hover:text-white hover:cursor-pointer hover:shadow-lg">
                 Apply to Speak
               </button>
             </a>
             <a href=" https://tally.so/r/3NkdGb" target="_blank" rel="noopener noreferrer">
-              <button className="cta-button bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md transition border-1 duration-300 hover:bg-red-600 hover:text-white hover:cursor-pointer hover:shadow-lg">
+              <button className="inter-font bg-white text-red-600 font-semibold px-6 py-3 rounded-full shadow-md transition border-1 duration-300 hover:bg-red-600 hover:text-white hover:cursor-pointer hover:shadow-lg">
                 Apply to Sponsor
               </button>
             </a>
@@ -200,24 +248,69 @@ export default function Website() {
 
           {/* Social Icons on Small Screens */}
           <div className="mt-14 flex md:hidden gap-4 justify-center">
-            <a
-              href="https://x.com/ethmumbai" target="_blank" rel="noopener noreferrer"
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
-            >
-              <img src={TwitterLogo} alt="Twitter" className="w-5 h-5" />
-            </a>
-            <a
-              href="https://farcaster.xyz/ethmumbai" target="_blank" rel="noopener noreferrer"
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
-            >
-              <img src={FarcasterLogo} alt="Farcaster" className="w-5 h-5" />
-            </a>
-            <a
-              href="https://t.me/ethmumbai" target="_blank" rel="noopener noreferrer"
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-100 transition"
-            >
-              <img src={TelegramLogo} alt="Telegram" className="w-5 h-5" />
-            </a>
+           <a
+            href="https://x.com/ethmumbai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md 
+             border-2 border-transparent transition-colors duration-300 ease-in-out
+             hover:bg-red-600 hover:border-white hover:cursor-pointer"
+          >
+            {/* Default icon */}
+            <img
+              src={TwitterLogo}
+              alt="X Logo"
+              className="w-5 h-5 block group-hover:hidden"
+            />
+            {/* White icon on hover */}
+            <img
+              src={TwitterWhite}
+              alt="X Logo White"
+              className="w-5 h-5 hidden group-hover:block"
+            />
+          </a>
+          <a
+            href="https://farcaster.xyz/ethmumbai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md 
+             border-2 border-transparent transition-colors duration-300 ease-in-out
+             hover:bg-red-600 hover:border-white hover:cursor-pointer"
+          >
+            {/* Default icon */}
+            <img
+              src={FarcasterLogo}
+              alt="X Logo"
+              className="w-5 h-5 block group-hover:hidden"
+            />
+            {/* White icon on hover */}
+            <img
+              src={FarcasterWhite}
+              alt="X Logo White"
+              className="w-5 h-5 hidden group-hover:block"
+            />
+          </a>
+          <a
+            href="https://t.me/ethmumbai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md 
+             border-2 border-transparent transition-colors duration-300 ease-in-out
+             hover:bg-red-600 hover:border-white hover:cursor-pointer"
+          >
+            {/* Default icon */}
+            <img
+              src={TelegramLogo}
+              alt="X Logo"
+              className="w-5 h-5 block group-hover:hidden"
+            />
+            {/* White icon on hover */}
+            <img
+              src={TelegramWhite}
+              alt="X Logo White"
+              className="w-5 h-5 hidden group-hover:block"
+            />
+          </a>
           </div>
         </main>
       </div>
